@@ -10,8 +10,13 @@ dist/
 # Competition/private assets are intentionally excluded.
 data/
 artifacts/
-members/
 submissions/
+# Keep only the collaboration summaries under members/.
+members/*
+!members/README.md
+!members/*/
+members/*/*
+!members/*/README.md
 *.zip
 *.cbm
 *.joblib

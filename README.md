@@ -26,6 +26,9 @@ LG Aimers 야구 투구 데이터에서 다음 투구의 제구 성공 확률을
      동일한지 자동 검증합니다.
 4. **실패를 포함한 실험 관리**
    - 단독 점수뿐 아니라 잔차 보완성, 시간 전이, 안정성을 기준으로 후보를 종료했습니다.
+5. **OOF 중심 팀 협업**
+   - 팀원의 모델 파일을 한 저장소에 합치기보다 `row_id, probability` 형식의 OOF와
+     예측 계보를 공유해 서로 다른 arm을 독립적으로 검증하고 결합했습니다.
 
 ## 결과
 
@@ -33,7 +36,8 @@ LG Aimers 야구 투구 데이터에서 다음 투구의 제구 성공 확률을
 
 | 단계 | Public score | 기여 범위 |
 | --- | ---: | --- |
-| 초기 기준 모델 | 약 1003 | 프로젝트 기준선 |
+| 첫 정상 제출 | 793.00000 | 초기 routed ensemble |
+| current-season state 도입 | 1003.41585 | 개인 모델링·행 독립성 감사 |
 | 자체 structured-off 개선 | 1021.40387 | 개인 모델링·검증 |
 | 보완적 팀원 모델과 OOF 블렌딩 | 1053.59248 | 블렌딩 설계·통합 |
 | 팀 최종 최고 기록 | 1104.66497 | 팀 전체 성과 |
@@ -50,7 +54,10 @@ src/pitch_control/
   blending.py      convex probability blend
   invariance.py    행 독립성 동적 감사
 tests/              합성 데이터 단위 테스트
-docs/               검증 설계와 실험 회고
+docs/
+  experiment_log.md 날짜·가설·성공/실패가 포함된 실험 대장
+  reports/          공개용으로 다시 쓴 대표 사례 보고서
+members/            팀원별 역할과 협업 산출물 요약 README
 ```
 
 ## 실행
@@ -73,8 +80,16 @@ python -m venv .venv
     -> 배포 후보
 ```
 
-보다 자세한 내용은 [검증 전략](docs/validation_strategy.md),
-[실험 회고](docs/experiment_summary.md), [공개 전 점검표](PUBLICATION_CHECKLIST.md)를
+## 협업 방식
+
+팀원은 서로 다른 모델 계열을 독립 arm으로 개발하고, 시간순 OOF와 재현 정보를 공유했습니다.
+통합 단계에서는 단독 점수보다 기존 앵커의 잔차를 보완하는지 확인했고, 실제 배포 계보에
+얹은 뒤 남는 순증분을 다시 측정했습니다. 팀원별 기여와 공개 범위는
+[members/README.md](members/README.md)에 정리했습니다.
+
+보다 자세한 내용은 [문서 인덱스](docs/README.md),
+[전체 실험 대장](docs/experiment_log.md), [검증 전략](docs/validation_strategy.md),
+[대표 사례 보고서](docs/reports/README.md), [공개 전 점검표](PUBLICATION_CHECKLIST.md)를
 참고하세요.
 
 ## 공개 범위
