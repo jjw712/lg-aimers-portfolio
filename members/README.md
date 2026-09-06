@@ -22,7 +22,7 @@ OOF, 모델, lookup, 제출 ZIP은 포함하지 않습니다. 각 README는 원�
 | [Minjung](minjung/README.md) | 독립 CatBoost/state arm과 OOF 공유 | 결합 시 +31.99, 후속 gate 계보 1055.08 |
 | [Hyerim](hyerim/README.md) | post-regime interaction correction과 팀 상위 계보 | a10bh 1070.97, mf1101 계보 |
 | [Doyeon](doyeon/README.md) | TabNet/ResNet-MLP neural diversity arm | mj50 + ResNet 15%로 1055.53 보고 |
-| [Woojin](woojin/README.md) | 독립 TrackMan/current-state arm과 veteran gate | 팀 최종 1104.66 |
+| [Woojin](woojin/README.md) | 독립 TrackMan/current-state arm과 veteran gate | veteran gate 계보 1104.66 |
 
 ## 협업에서 중요했던 것
 
